@@ -9,8 +9,26 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" File and Directory explorer
 Plugin 'scrooloose/nerdtree'
+
+" Vim UI
+Plugin 'bling/vim-airline'
+"Plugin 'Lokaltog/vim-powerline'
+
+" Color scheme
 Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+
+" Syntax check
+Plugin 'scrooloose/syntastic'
+
+" Alignment and formation
+Plugin 'godlygeek/tabular'
+Plugin 'nathanaelkane/vim-indent-guides'
+
+" Code autocomplete
 "Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
@@ -30,9 +48,10 @@ filetype plugin indent on    " required
 
 
 "语法高亮
-set syntax=on
+syntax on
 set background=dark
 colorscheme solarized
+"colorscheme molokai
 
 "set tabstop(ts)=4, 设tab宽为4个空格
 set ts=4
@@ -49,6 +68,5 @@ set shiftwidth=4
 set nu
 
 set autoindent
-
 set smartindent
 

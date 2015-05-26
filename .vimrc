@@ -1,3 +1,6 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""" Vundle Configure """""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -10,30 +13,57 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" File and Directory explorer
+""" The following are examples of different formats supported.
+""" Keep Plugin commands between vundle#begin/end.
+
+""" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+
+""" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+""" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+
+""" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+
+""" The sparkup vim script is in a subdirectory of this repo called vim.
+""" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+""" Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+
+"""""""""""" Start: custom plugins """"""""""""""""""""""""""""
+
+""" File and Directory explorer
 Plugin 'scrooloose/nerdtree'
 
-" Vim UI
-"Plugin 'bling/vim-airline'
-Plugin 'Lokaltog/vim-powerline'
+""" Vim UI: status bar, tag bar, etc.
+Plugin 'bling/vim-airline'
 
-" Color scheme
+""" Color scheme
 Plugin 'altercation/vim-colors-solarized'
 "Plugin 'tomasr/molokai'
 
-" Syntax check
+""" Syntax check
 Plugin 'scrooloose/syntastic'
 
-" Alignment and Indent
-Plugin 'godlygeek/tabular'
-Plugin 'nathanaelkane/vim-indent-guides'
+""" Alignment and Indent
+"Plugin 'godlygeek/tabular'
+"Plugin 'nathanaelkane/vim-indent-guides'
 
-"overview of file's structure 
+""" overview of file's structure
 Plugin 'majutsushi/tagbar'
 
-" Code autocomplete
+""" Code autocomplete
 Plugin 'Raimondi/delimitMate'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
+
+"""""""""""" End: custom plugins """"""""""""""""""""""""""""
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,88 +76,94 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""" config font for Gvim
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 
-" Status line 
-" let g:airline#extensions#tabline#enabled = 1
-"powerline
-"let g:Powerline_symbols = 'unicode'
-set laststatus=2 " Always display the statusline in all windows
-"set guifont=Inconsolata\ for\ Powerline:h14
-" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-"set noshowmode 
+""" airline
+set laststatus=2
+""" 使用powerline打过补丁的字体
+let g:airline_powerline_fonts = 1
+""" 开启tabline
+let g:airline#extensions#tabline#enabled = 1
+""" tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_sep = ' '
+""" tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'
+""" tabline中buffer显示编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
+""" 映射切换buffer的键位
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>>>
 
-" powerline {
-set guifont=PowerlineSymbols\ for\ Powerline
-"set t_Co=256
-let g:Powerline_symbols = 'fancy'
-" }
+""" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
 
-" Color scheme, 语法高亮
-syntax enable 
-syntax on
+""" Color scheme, 语法高亮
+syntax enable
 set background=dark
+set t_Co=256
 colorscheme solarized
-"set t_Co=256
+let g:solarized_termcolors=256
 "colorscheme molokai
 
-"code autocomplete
-let g:ycm_global_ycm_extra_conf = '/home/wenchy/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+""" code autocomplete, 代码自动补全
+"let g:ycm_global_ycm_extra_conf = '/home/wenchy/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 
 
-" Backspace deletes like most programs in insert mode
+""" Backspace deletes like most programs in insert mode
 set backspace=2
 
-" Show the cursor position all the time
+""" Show the cursor position all the time
 set ruler
-" Display incomplete commands
+
+""" Display incomplete commands
 set showcmd
-" Set fileencodings
+
+""" Set fileencodings
 set fileencodings=utf-8,bg18030,gbk,big5
 
-filetype plugin indent on
-" C language indent
+""" C language indent
 set cin
 set sw=4
 set sm
-" softtabs, 设tab宽为4个空格
-set ts=4 "set tabstop=4
+
+""" softtabs, 设tab宽为4个空格
+set ts=4 " set tabstop=4
 set softtabstop=4
 set shiftround
 set shiftwidth=4
 
-"set expandtab: 设置一个tab为4个空格，即用4个空格来替换制表符"\t"
-"set noexpandtab: 用制表符"\t"表示一个缩进
+""" set expandtab: 设置一个tab为4个空格，即用4个空格来替换制表符"\t"
+""" set noexpandtab: 用制表符"\t"表示一个缩进
 set et
 
-" Display extra whitespace
+""" Display extra whitespace
 set list listchars=tab:»·,trail:·
 
-"Number
-set nu "set number(nu)
+""" Number
+set nu " set number(nu)
 "set numberwidth=5
 
-"Search
+""" Search
 set matchpairs+=<:>
 set hlsearch
 
-" Indent
-set autoindent
-set smartindent
+""" Indent
+ set autoindent
+ set smartindent
 
-" Highlight current line
+""" Highlight current line
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
-" Personal Customization
-
+""" Personal Customization
 "insert mode auto-completion for quotes, parens, brackets, etc.
 "inoremap ( ()<ESC>i
 "inoremap [ []<ESC>i
 "inoremap { {}<ESC>i
 "inoremap < <><ESC>i
-

@@ -105,7 +105,7 @@ set noshowmode
 """ Color scheme, 语法高亮
 syntax enable
 set background=dark
-set t_Co=256
+set t_Co=256 " NOTE: inherit from xterm, so need configure xterm before
 colorscheme solarized
 let g:solarized_termcolors=256
 "colorscheme molokai

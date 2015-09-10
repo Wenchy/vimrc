@@ -105,6 +105,7 @@ set noshowmode
 """ Color scheme, 语法高亮
 syntax enable
 set background=dark
+""" 在终端下打开256色
 set t_Co=256 " NOTE: inherit from xterm, so need configure xterm before
 colorscheme solarized
 let g:solarized_termcolors=256
@@ -118,15 +119,19 @@ let g:solarized_termcolors=256
 set backspace=2
 
 """ Show the cursor position all the time
+""" 标尺，用于显示光标位置的行号和列号，逗号分隔。
+""" 每个窗口都有自己的标尺。如果窗口有状态行，
+""" 标尺在那里显示。否则，它显示在屏幕的最后一行上。
 set ruler
 
 """ Display incomplete commands
+""" 在状态栏显示正在输入的命令
 set showcmd
 
 """ Set fileencodings
 set fileencodings=utf-8,bg18030,gbk,big5
 
-""" C language indent
+""" C/C++ language indent
 set cin
 set sw=4
 set sm
@@ -134,6 +139,8 @@ set sm
 """ softtabs, 设tab宽为4个空格
 set ts=4 " set tabstop=4
 set softtabstop=4
+
+" 设置（自动）缩进的空格数为4
 set shiftround
 set shiftwidth=4
 
@@ -150,8 +157,20 @@ set nu " set number(nu)
 
 """ Search
 set matchpairs+=<:>
+""" 高亮搜索结果
 set hlsearch
+""" 搜索的时候实时显示结果
+set incsearch
 
+""" 设置匹配模式，显示匹配的括号
+set showmatch
+
+""" 智能补全
+set completeopt=longest,menu
+
+""" 设置历史记录为50条
+set history=50
+"
 """ Indent
  set autoindent
  set smartindent
@@ -161,9 +180,13 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
-""" Personal Customization
-"insert mode auto-completion for quotes, parens, brackets, etc.
-"inoremap ( ()<ESC>i
-"inoremap [ []<ESC>i
-"inoremap { {}<ESC>i
-"inoremap < <><ESC>i
+""" 为方便复制，用<F2>开启/关闭行号显示:
+nnoremap <F2> :set nonumber!<CR>
+
+""" insert mode auto-completion for
+""" quotes, parens, brackets, etc.
+""" 括号引号补全
+:inoremap ( ()<ESC>i
+:inoremap { {<CR>}<ESC>O
+:inoremap [ []<ESC>i
+:inoremap < <><ESC>i

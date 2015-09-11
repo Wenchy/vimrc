@@ -175,6 +175,9 @@ set history=50
  set autoindent
  set smartindent
 
+""" Accessing the system clipboard
+set clipboard=unnamedplus
+
 """ Highlight current line
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn

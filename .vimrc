@@ -1,9 +1,17 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""" Vundle Configure """""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                preamble                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
+" Needed for vundle, will be turned on after vundle inits
 filetype off                  " required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          Vundle configuration                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" These need to come before the configuration options for the plugins since
+" vundle will add the plugin folders to the runtimepath only after it has seen
+" the plugin's Plugin command
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -11,185 +19,237 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
-""" The following are examples of different formats supported.
-""" Keep Plugin commands between vundle#begin/end.
-
-""" plugin on GitHub repo
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
 " Plugin 'tpope/vim-fugitive'
-
-""" plugin from http://vim-scripts.org/vim/scripts.html
+" plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
-
-""" Git plugin not hosted on GitHub
+" Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
-
-""" git repos on your local machine (i.e. when working on your own plugin)
+" git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
-
-""" The sparkup vim script is in a subdirectory of this repo called vim.
-""" Pass the path to set the runtimepath properly.
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-""" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-
-
-"""""""""""" Start: custom plugins """"""""""""""""""""""""""""
-
-""" File and Directory explorer
-Plugin 'scrooloose/nerdtree'
-
-""" Vim UI: status bar, tag bar, etc.
-Plugin 'bling/vim-airline'
-
-""" Color scheme
-Plugin 'altercation/vim-colors-solarized'
-"Plugin 'tomasr/molokai'
-
-""" Syntax check
-Plugin 'scrooloose/syntastic'
-
-""" Alignment and Indent
-"Plugin 'godlygeek/tabular'
-"Plugin 'nathanaelkane/vim-indent-guides'
-
-""" overview of file's structure
-Plugin 'majutsushi/tagbar'
-
-""" Code autocomplete
-Plugin 'Raimondi/delimitMate'
-"Plugin 'Valloric/YouCompleteMe'
-
-"""""""""""" End: custom plugins """"""""""""""""""""""""""""
-
+"""""""""" Begin: local plugins """"""""""
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'file://~/.vim/bundle/nerdtree'
+Plugin 'file://~/.vim/bundle/ctrlp.vim'
+Plugin 'file://~/.vim/bundle/tabular'
+Plugin 'file://~/.vim/bundle/tagbar'
+Plugin 'file://~/.vim/bundle/vim-startify'
+Plugin 'file://~/.vim/bundle/gruvbox'
+Plugin 'file://~/.vim/bundle/vim-airline'
+Plugin 'file://~/.vim/bundle/delimitMate'
+Plugin 'file://~/.vim/bundle/vim-multiple-cursors'
+Plugin 'file://~/.vim/bundle/nerdcommenter'
+Plugin 'file://~/.vim/bundle/vim-surround'
+""""""""""   End: local plugins """"""""""
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+" filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""" config font for Gvim
-"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+"""""""""" Custom Plugin """"""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       ***  HERE BE PLUGINS  ***                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ airline
+""let g:airline_theme="luna" 
 set laststatus=2
-""" 使用powerline打过补丁的字体
-let g:airline_powerline_fonts = 1
-""" 开启tabline
+"这个是安装字体后 必须设置此项" 
+let g:airline_powerline_fonts = 1   
+"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
+"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
 let g:airline#extensions#tabline#enabled = 1
-""" tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_sep = ' '
-""" tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'
-""" tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
-""" 映射切换buffer的键位
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>>>
-
-""" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
-
-""" Color scheme, 语法高亮
-syntax enable
-set background=dark
-""" 在终端下打开256色
-set t_Co=256 " NOTE: inherit from xterm, so need configure xterm before
-colorscheme solarized
-let g:solarized_termcolors=256
-"colorscheme molokai
-
-""" code autocomplete, 代码自动补全
-"let g:ycm_global_ycm_extra_conf = '/home/wenchy/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 
 
-""" Backspace deletes like most programs in insert mode
-set backspace=2
+""" NERDTree
+" open NERDTree when vim start
+"autocmd VimEnter * NERDTree
+" F1 => toggle NERDTree
+nnoremap <F1> :silent! NERDTreeToggle<CR>
+"let NERDTreeWinPos="right"
+let NERDTreeShowBookmarks=1
 
-""" Show the cursor position all the time
-""" 标尺，用于显示光标位置的行号和列号，逗号分隔。
-""" 每个窗口都有自己的标尺。如果窗口有状态行，
-""" 标尺在那里显示。否则，它显示在屏幕的最后一行上。
-set ruler
+""" tagbar
+" F1 => toggle tagbar
+nmap <F2> :TagbarToggle<CR>
 
-""" Display incomplete commands
-""" 在状态栏显示正在输入的命令
-set showcmd
+""" nerdcommenter
+" 注释的时候自动加个空格
+let g:NERDSpaceDelims=1
 
-""" Set fileencodings
-set fileencodings=utf-8,bg18030,gbk,big5
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            General settings                             "
+"                            Non-Plugin Stuff                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""" C/C++ language indent
-set cin
-set sw=4
-set sm
+set fileencodings=utf-8,gbk,big5		" file encodings
+set number								" show line number
+""" F10 => toggle number 
+nnoremap <F10> :set nonumber!<CR>		" F10 switch on/off for number
 
-""" softtabs, 设tab宽为4个空格
-set ts=4 " set tabstop=4
-set softtabstop=4
-
-" 设置（自动）缩进的空格数为4
-set shiftround
-set shiftwidth=4
-
-""" set expandtab: 设置一个tab为4个空格，即用4个空格来替换制表符"\t"
-""" set noexpandtab: 用制表符"\t"表示一个缩进
-set et
-
-""" Display extra whitespace
-set list listchars=tab:»·,trail:·
-
-""" Number
-set nu " set number(nu)
-"set numberwidth=5
-
-""" Search
-set matchpairs+=<:>
-""" 高亮搜索结果
-set hlsearch
-""" 搜索的时候实时显示结果
-set incsearch
-
-""" 设置匹配模式，显示匹配的括号
-set showmatch
-
-""" 智能补全
-set completeopt=longest,menu
-
-""" 设置历史记录为50条
-set history=50
-"
-""" Indent
- set autoindent
- set smartindent
-
-""" Accessing the system clipboard
-set clipboard=unnamedplus
-
+""" DISPLAY SETTINGS
+syntax enable							" syntax on
+set background=dark     				" enable for dark terminals
+set showmatch           				" show matching bracket (briefly jump)
+set matchtime=2         				" reduces matching paren blink time from the 5[00]ms def
+set showmode            				" show mode in status bar (insert/replace/...)
+set showcmd             				" show typed command in status bar
+set ruler               				" show cursor position in status bar
+set title               				" show file in titlebar
+set winaltkeys=no       				" turns of the Alt key bindings to the gui menu
 """ Highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
+"au WinLeave * set nocursorline nocursorcolumn
+"au WinEnter * set cursorline nocursorcolumn
 set cursorline cursorcolumn
 
-""" 为方便复制，用<F2>开启/关闭行号显示:
-nnoremap <F2> :set nonumber!<CR>
+""" colorscheme: solarized and gruvbox
+"set t_Co=8								" Xshell bug for solarized
+"let g:solarized_termcolors=256
+"colorscheme solarized
+set t_Co=256
+colorscheme gruvbox
 
-""" insert mode auto-completion for
-""" quotes, parens, brackets, etc.
-""" 括号引号补全
-:inoremap ( ()<ESC>i
-:inoremap { {<CR>}<ESC>O
-:inoremap [ []<ESC>i
-:inoremap < <><ESC>i
+""" When you type the first tab, it will complete as much as possible, the second
+""" tab hit will provide a list, the third and subsequent tabs will cycle through
+""" completion options so you can complete the file without further keys
+set wildmode=longest,list,full
+set wildmenu            " completion with menu
+""" This changes the default display of tab and CR chars in list mode
+set listchars=tab:▸\ ,eol:¬
+
+""" The "longest" option makes completion insert the longest prefix of all
+""" the possible matches; see :h completeopt
+set completeopt=menu,menuone,longest
+set switchbuf=useopen,usetab
+
+""" EDITOR SETTINGS
+set ignorecase          				" case insensitive searching
+set smartcase          				 	" but become case sensitive if you type uppercase characters
+""" this can cause problems with other filetypes
+""" see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
+"set smartindent         				" smart auto indenting
+set autoindent          				" on new lines, match indent of previous line
+set copyindent          				" copy the previous indentation on autoindenting
+set cindent             				" smart indenting for c-like code
+set cino=b1,g0,N-s,t0,(0,W4  			" see :h cinoptions-values
+set smarttab            				" smart tab handling for indenting
+set magic               				" change the way backslashes are used in search patterns
+set bs=indent,eol,start 				" Allow backspacing over everything in insert mode
+set nobackup            				" no backup~ files.
+
+set tabstop=4           				" number of spaces a tab counts for
+set shiftwidth=4        				" spaces for autoindents
+set softtabstop=4
+set shiftround          				" makes indenting a multiple of shiftwidth
+set expandtab           				" turn a tab into spaces
+set laststatus=2        				" the statusline is now always shown
+set noshowmode          				" don't show the mode ("-- INSERT --") at the bottom
+
+""" misc settings
+set fileformat=unix     				" file mode is unix
+set fileformats=unix,dos,mac   			" detects unix, dos, mac file formats in that order
+
+set viminfo='20,\"500   				" remember copy registers after quitting in the .viminfo
+										" file -- 20 jump links, regs up to 500 lines'
+
+set hidden              				" allows making buffers hidden even with unsaved changes
+set history=1000        				" remember more commands and search history
+set undolevels=1000     				" use many levels of undo
+set autoread            				" auto read when a file is changed from the outside
+set mouse=a             				" enables the mouse in all modes
+set foldlevelstart=99   				" all folds open by default
+
+""" toggles vim's paste mode; when we want to paste something into vim from a different
+""" application, turning on paste mode prevents the insertion of extra whitespace
+set pastetoggle=<F7>
+
+""" Right-click on selection should bring up a menu
+set mousemodel=popup_setpos
+
+""" Look for tag def in a "tags" file in the dir of the current file, then for that
+""" same file in every folder above the folder of the current file, until theroot.
+set tags=./tags;/
+
+""" Number of screen lines to use for the command-line
+set cmdheight=2
+
+""" allow backspace and cursor keys to cross line boundaries
+set whichwrap+=<,>,h,l
+set nohlsearch          				" do not highlight searched-for phrases
+set incsearch           				" but do highlight-as-I-type the search string
+set gdefault            				" this makes search/replace global by default
+
+""" none of these should be word dividers, so make them not be
+set iskeyword+=_,$,@,%,#
+
+""" enforces a specified line-length and auto inserts hard line breaks when we
+""" reach the limit; in Normal mode, you can reformat the current paragraph with
+""" gqap.
+set textwidth=80	
+
+augroup vimrc
+  " Automatically delete trailing DOS-returns and whitespace on file open and write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END
+
+""" Highlight Class and Function names
+function! s:HighlightFunctionsAndClasses()
+  syn match cCustomFunc      "\w\+\s*\((\)\@="
+  syn match cCustomClass     "\w\+\s*\(::\)\@="
+
+  hi def link cCustomFunc      Function
+  hi def link cCustomClass     Function
+endfunction
+
+""" Highlight Class and Function names, D specific
+function! s:HighlightDFunctionsAndClasses()
+  syn match cCustomDFunc     "\w\+\s*\(!.\{-}(\)\@="
+  syn match cCustomDFuncUFCS ".\w\+\s*\(!.\{-}\)\@="
+
+  hi def link cCustomDFunc     Function
+  hi def link cCustomDFuncUFCS Function
+endfunction
+
+""" TODO: this should:
+""" a) not be called for every filetype
+""" b) be in a separate plugin
+au vimrc Syntax * call s:HighlightFunctionsAndClasses()
+au vimrc Syntax d call s:HighlightDFunctionsAndClasses()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            custom mappings                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""" our <leader> will be the space key
+let mapleader=" "
+
+""" our <localleader> will be the '-' key
+let maplocalleader="-"
+
+" this makes vim's regex engine "not stupid"
+" see :h magic
+nnoremap / /\v
+vnoremap / /\v

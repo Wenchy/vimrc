@@ -40,18 +40,33 @@ Plugin 'VundleVim/Vundle.vim'
 
 """""""""" Begin: local plugins """"""""""
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file://~/.vim/bundle/nerdtree'
-Plugin 'file://~/.vim/bundle/ctrlp.vim'
-Plugin 'file://~/.vim/bundle/tabular'
-Plugin 'file://~/.vim/bundle/tagbar'
-Plugin 'file://~/.vim/bundle/vim-startify'
-Plugin 'file://~/.vim/bundle/gruvbox'
-Plugin 'file://~/.vim/bundle/vim-airline'
-Plugin 'file://~/.vim/bundle/delimitMate'
-Plugin 'file://~/.vim/bundle/vim-multiple-cursors'
-Plugin 'file://~/.vim/bundle/nerdcommenter'
-Plugin 'file://~/.vim/bundle/vim-surround'
+"Plugin 'file://~/.vim/bundle/nerdtree'
+"Plugin 'file://~/.vim/bundle/ctrlp.vim'
+"Plugin 'file://~/.vim/bundle/tabular'
+"Plugin 'file://~/.vim/bundle/tagbar'
+"Plugin 'file://~/.vim/bundle/vim-startify'
+"Plugin 'file://~/.vim/bundle/gruvbox'
+"Plugin 'file://~/.vim/bundle/vim-airline'
+"Plugin 'file://~/.vim/bundle/delimitMate'
+"Plugin 'file://~/.vim/bundle/vim-multiple-cursors'
+"Plugin 'file://~/.vim/bundle/nerdcommenter'
+"Plugin 'file://~/.vim/bundle/vim-surround'
 """"""""""   End: local plugins """"""""""
+
+"""""""""" Begin: remote plugins """"""""""
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'mhinz/vim-startify'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-airline/vim-airline'
+Plugin 'Raimondi/delimitMate'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+""""""""""   End: remote plugins """"""""""
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,10 +89,10 @@ filetype plugin indent on    " required
 "                       ***  HERE BE PLUGINS  ***                         "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ airline
-""let g:airline_theme="luna" 
+""let g:airline_theme="luna"
 set laststatus=2
-"这个是安装字体后 必须设置此项" 
-let g:airline_powerline_fonts = 1   
+"这个是安装字体后 必须设置此项"
+let g:airline_powerline_fonts = 1
 "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
 let g:airline#extensions#tabline#enabled = 1
@@ -107,7 +122,7 @@ let g:NERDSpaceDelims=1
 
 set fileencodings=utf-8,gbk,big5		" file encodings
 set number								" show line number
-""" F10 => toggle number 
+""" F10 => toggle number
 nnoremap <F10> :set nonumber!<CR>		" F10 switch on/off for number
 
 """ DISPLAY SETTINGS
@@ -208,7 +223,7 @@ set iskeyword+=_,$,@,%,#
 """ enforces a specified line-length and auto inserts hard line breaks when we
 """ reach the limit; in Normal mode, you can reformat the current paragraph with
 """ gqap.
-set textwidth=80	
+set textwidth=80
 
 augroup vimrc
   " Automatically delete trailing DOS-returns and whitespace on file open and write.
